@@ -67,11 +67,16 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { -webkit-font-smoothing: antialiased; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.75;
   }
   h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; }
   ::selection { background: color-mix(in oklab, var(--accent) 25%, transparent); }
@@ -79,12 +84,22 @@
 
 @utility eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
 
 @utility placeholder-lines {
   background-image: repeating-linear-gradient(135deg, color-mix(in oklab, var(--foreground) 5%, transparent) 0 1px, transparent 1px 8px);
+}
+
+@utility prose-reading {
+  font-size: 1.125rem;
+  line-height: 1.78;
+  color: var(--muted-foreground);
+}
+
+@utility learning-section {
+  scroll-margin-top: 6rem;
 }

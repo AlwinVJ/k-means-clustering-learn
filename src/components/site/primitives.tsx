@@ -36,13 +36,13 @@ export function PageHeader({
     <header className="border-b">
       <Container className="pt-10 pb-14 md:pt-14 md:pb-20">
         <Breadcrumbs items={crumbs} />
-        <div className="mt-12 grid gap-10 md:grid-cols-[1fr_16rem] md:items-end">
+        <div className="mt-12 grid gap-10 md:grid-cols-[1fr_17rem] md:items-end">
           <div>
             <p className="eyebrow mb-5"><span className="text-accent">§ {index}</span></p>
-            <h1 className="max-w-3xl text-4xl leading-[1.05] md:text-6xl">{title}</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{lede}</p>
+            <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-[2.75rem] lg:text-[3.25rem] leading-[1.08]">{title}</h1>
+            <p className="mt-6 max-w-3xl text-lg sm:text-xl lg:text-[1.25rem] leading-[1.65] text-muted-foreground">{lede}</p>
           </div>
-          {aside && <div className="border-l pl-5 text-sm text-muted-foreground">{aside}</div>}
+          {aside && <div className="border-l pl-6 text-sm sm:text-[15px] leading-relaxed text-muted-foreground">{aside}</div>}
         </div>
       </Container>
     </header>
@@ -51,11 +51,11 @@ export function PageHeader({
 
 export function SectionHeading({ number, title, kicker, id }: { number?: string; title: string; kicker?: string; id?: string }) {
   return (
-    <div className="mb-8 grid gap-2 md:grid-cols-[6rem_1fr]">
-      <span className="pt-2 font-mono text-sm text-accent">{number}</span>
+    <div className="mb-8 grid gap-2 md:grid-cols-[5rem_1fr] lg:grid-cols-[6rem_1fr]">
+      <span className="pt-2 font-mono text-sm sm:text-base text-accent">{number}</span>
       <div>
         {kicker && <p className="eyebrow mb-2">{kicker}</p>}
-        <h2 id={id} className="scroll-mt-24 text-3xl leading-tight md:text-4xl">{title}</h2>
+        <h2 id={id} className="scroll-mt-24 text-3xl sm:text-[2rem] md:text-[2.25rem] leading-tight font-serif text-foreground">{title}</h2>
       </div>
     </div>
   );
@@ -77,26 +77,26 @@ export function Placeholder({ label, lines = 3, className }: { label: string; li
 
 export function MathBlock({ label, number, children }: { label: string; number?: string; children?: ReactNode }) {
   return (
-    <figure className="my-8 border-y py-8">
+    <figure className="my-10 border-y py-9">
       <div className="flex items-center gap-6">
-        <div className="flex-1 text-center font-serif text-2xl italic">
+        <div className="flex-1 text-center font-serif text-2xl sm:text-[1.75rem] md:text-[1.875rem] italic text-foreground leading-normal">
           {children ?? <span className="text-muted-foreground/60 not-italic font-mono text-sm">[ equation · {label} ]</span>}
         </div>
-        {number && <span className="font-mono text-sm text-muted-foreground">({number})</span>}
+        {number && <span className="font-mono text-xs sm:text-sm text-muted-foreground">({number})</span>}
       </div>
-      <figcaption className="mt-4 text-center eyebrow">{label}</figcaption>
+      <figcaption className="mt-5 text-center eyebrow">{label}</figcaption>
     </figure>
   );
 }
 
 export function CodeBlock({ filename, lang = "python", code }: { filename: string; lang?: string; code?: string }) {
   return (
-    <figure className="my-6 overflow-hidden rounded-md border bg-foreground text-background">
-      <figcaption className="flex items-center justify-between border-b border-background/15 px-4 py-2.5 font-mono text-xs">
-        <span>{filename}</span>
-        <span className="text-background/50">{lang}</span>
+    <figure className="my-8 overflow-hidden rounded-md border bg-foreground text-background">
+      <figcaption className="flex items-center justify-between border-b border-background/15 px-5 py-3 font-mono text-xs sm:text-sm">
+        <span className="font-medium">{filename}</span>
+        <span className="text-background/50 uppercase text-[11px]">{lang}</span>
       </figcaption>
-      <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-6">
+      <pre className="overflow-x-auto p-5 sm:p-6 font-mono text-[13.5px] sm:text-[14.5px] leading-6 sm:leading-7">
         <code>{code ?? "# Code example will appear here in a later phase.\n#\n# ...\n"}</code>
       </pre>
     </figure>

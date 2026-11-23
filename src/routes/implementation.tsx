@@ -263,7 +263,7 @@ function ImplementationPage() {
               kicker="First Principles"
               id="scratch-heading"
             />
-            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-[17px] sm:text-[18px] leading-[1.78]">
               <p className="text-muted-foreground">
                 Writing K-Means without any scientific computing dependencies unmasks the internal mechanics of Lloyd's algorithm: initialization, pairwise distance iteration, Voronoi partitioning, arithmetic centroid updates, and stopping threshold evaluation.
               </p>
@@ -291,7 +291,7 @@ function ImplementationPage() {
               kicker="High-Throughput Linear Algebra"
               id="numpy-heading"
             />
-            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-[17px] sm:text-[18px] leading-[1.78]">
               <p className="text-muted-foreground">
                 Python's native nested loops incur significant interpreter overhead. NumPy eliminates loop overhead by pushing distance calculations into contiguous C-level SIMD vectors using <strong>array broadcasting</strong>:
               </p>
@@ -316,7 +316,7 @@ function ImplementationPage() {
               kicker="Industrial Standard"
               id="sklearn-heading"
             />
-            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-[17px] sm:text-[18px] leading-[1.78]">
               <p className="text-muted-foreground">
                 In industry applications, <span className="font-mono text-foreground">sklearn.cluster.KMeans</span> provides essential production enhancements: K-Means++ smart seeding, automatic multi-threading via OpenMP, early stopping on tolerance, and cluster quality tracking.
               </p>
@@ -333,7 +333,7 @@ function ImplementationPage() {
               kicker="Critical Preprocessing"
               id="scale-heading"
             />
-            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-[17px] sm:text-[18px] leading-[1.78]">
               <p className="text-muted-foreground">
                 Because K-Means measures proximity using Euclidean distance <span className="font-mono text-foreground">d = √(∑(xⱼ − μⱼ)²)</span>, features with inherently larger numeric magnitudes (e.g., Annual Income in thousands of dollars) will mathematically overpower features with small ranges (e.g., Age in decades), rendering the smaller features virtually irrelevant.
               </p>
@@ -366,7 +366,7 @@ function ImplementationPage() {
               kicker="Benchmark Diagnostics"
               id="diag-heading"
             />
-            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-[17px] sm:text-[18px] leading-[1.78]">
               <p className="text-muted-foreground">
                 Below is the verified terminal output when executing the production scikit-learn pipeline on 500 samples with 3 natural Gaussian blobs:
               </p>
