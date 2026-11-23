@@ -19,7 +19,8 @@ import {
   Hash,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Container, MathBlock, PageHeader, PrevNext, SectionHeading, VizFrame } from "@/components/site/primitives";
+import { BlockMath, Container, InlineMath, MathBlock, PageHeader, PrevNext, SectionHeading, VizFrame } from "@/components/site/primitives";
+import { TOPICS } from "@/data/learningTopics";
 
 export const Route = createFileRoute("/learn")({
   head: () => ({
@@ -33,94 +34,6 @@ export const Route = createFileRoute("/learn")({
   }),
   component: LearnPage,
 });
-
-export interface TopicItem {
-  id: string;
-  n: number;
-  title: string;
-  time: string;
-  summary: string;
-  deepDiveUrl?: string;
-  deepDiveLabel?: string;
-}
-
-export const TOPICS: TopicItem[] = [
-  {
-    id: "unsupervised-learning",
-    n: 1,
-    title: "Introduction to Unsupervised Learning",
-    time: "15 min",
-    summary: "Discover the paradigm of learning from unlabelled data, contrasting supervised loss with geometric structure discovery.",
-  },
-  {
-    id: "clustering",
-    n: 2,
-    title: "Introduction to Clustering",
-    time: "20 min",
-    summary: "Explore cluster compactness, inter-cluster separation, distance metrics, and the four major clustering algorithm families.",
-  },
-  {
-    id: "kmeans-fundamentals",
-    n: 3,
-    title: "K-Means Clustering Fundamentals",
-    time: "25 min",
-    summary: "Understand what K represents, the geometric role of centroids, and how minimum Euclidean distance drives partition assignment.",
-    deepDiveUrl: "/explorer",
-    deepDiveLabel: "Open Explorer Laboratory",
-  },
-  {
-    id: "mathematical-foundations",
-    n: 4,
-    title: "Mathematical Foundations",
-    time: "40 min",
-    summary: "Derive Euclidean distance, coordinate-wise centroid updates, WCSS, and Lloyd's coordinate descent objective function.",
-    deepDiveUrl: "/mathematics",
-    deepDiveLabel: "Read Mathematics Monograph",
-  },
-  {
-    id: "how-kmeans-works",
-    n: 5,
-    title: "How K-Means Works",
-    time: "30 min",
-    summary: "Follow the iterative two-step dance: Voronoi assignment and centroid repositioning, comparing random vs K-Means++ initialization.",
-    deepDiveUrl: "/explorer",
-    deepDiveLabel: "Simulate Step-by-Step",
-  },
-  {
-    id: "choosing-k",
-    n: 6,
-    title: "Choosing the Optimal Number of Clusters",
-    time: "25 min",
-    summary: "Master the Elbow Method and Silhouette Analysis to quantitatively diagnose the true underlying cluster count.",
-    deepDiveUrl: "/evaluation",
-    deepDiveLabel: "View Diagnostic Curves",
-  },
-  {
-    id: "evaluation-metrics",
-    n: 7,
-    title: "Evaluating Clustering Performance",
-    time: "30 min",
-    summary: "Compare internal geometric metrics (Davies-Bouldin, Calinski-Harabasz) with external ground-truth metrics (Adjusted Rand Index).",
-    deepDiveUrl: "/evaluation",
-    deepDiveLabel: "Explore Evaluation Metrics",
-  },
-  {
-    id: "practical-implementation",
-    n: 8,
-    title: "Practical Implementation",
-    time: "45 min",
-    summary: "Write and execute clean, production-grade implementations from scratch in pure Python, vectorized NumPy, and scikit-learn.",
-    deepDiveUrl: "/implementation",
-    deepDiveLabel: "Inspect Implementation Code",
-  },
-  {
-    id: "applications-limitations",
-    n: 9,
-    title: "Limitations and Real-World Applications",
-    time: "20 min",
-    summary: "Study industrial use cases from customer RFM segmentation to color quantization, alongside critical failure modes.",
-  },
-];
 
 function LearnPage() {
   const [activeId, setActiveId] = useState<string>("unsupervised-learning");
@@ -628,9 +541,11 @@ function LearnPage() {
                 <p>
                   Proximity between sample <span className="font-mono text-foreground">x = (x₁, ..., x_d)ᵀ</span> and centroid prototype <span className="font-mono text-foreground">μ = (μ₁, ..., μ_d)ᵀ</span> is measured via Euclidean distance:
                 </p>
-                <MathBlock label="Euclidean Distance Metric" number="Eq. 1">
-                  <span>{"d(x, μ) = ‖x − μ‖ = √( ∑ⱼ₌₁ᵈ (xⱼ − μⱼ)² )"}</span>
-                </MathBlock>
+                <MathBlock
+                  label="Euclidean Distance Metric"
+                  number="Eq. 1"
+                  math="d(x, \mu) = \|x - \mu\| = \sqrt{\sum_{j=1}^d (x_j - \mu_j)^2}"
+                />
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Because the square root is strictly monotonic, minimizing Euclidean distance is mathematically identical to minimizing the squared Euclidean distance <span className="font-mono text-foreground">‖x − μ‖²</span>, saving computational cycles and providing continuous differentiability.
                 </p>
@@ -641,11 +556,13 @@ function LearnPage() {
                 <p>
                   Formally, K-Means minimizes the total Within-Cluster Sum of Squares (WCSS / Inertia):
                 </p>
-                <MathBlock label="K-Means Global Loss Objective" number="Eq. 2">
-                  <span>{"J(R, M) = ∑_{i=1}^n ∑_{k=1}^K r_{ik} · ‖xᵢ − μₖ‖²"}</span>
-                </MathBlock>
+                <MathBlock
+                  label="K-Means Global Loss Objective"
+                  number="Eq. 2"
+                  math="J(R, M) = \sum_{i=1}^n \sum_{k=1}^K r_{ik} \cdot \|x_i - \mu_k\|^2"
+                />
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Where <span className="font-mono text-foreground">r_{"{ik}"} ∈ {"{0, 1}"}</span> indicates assignment of sample <span className="font-mono text-foreground">xᵢ</span> to cluster <span className="font-mono text-foreground">k</span>, subject to <span className="font-mono text-foreground">∑_k r_{"{ik}"} = 1</span>.
+                  Where <InlineMath math="r_{ik} \in \{0, 1\}" /> indicates assignment of sample <span className="font-mono text-foreground">xᵢ</span> to cluster <span className="font-mono text-foreground">k</span>, subject to <InlineMath math="\sum_{k=1}^K r_{ik} = 1" />.
                 </p>
               </div>
 
@@ -655,8 +572,8 @@ function LearnPage() {
                   Lloyd's algorithm alternates between two convex sub-problems:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-sm sm:text-[16px]">
-                  <li><strong>Assignment Step:</strong> Holding centroids fixed, minimizing <span className="font-mono text-foreground">J</span> with respect to <span className="font-mono text-foreground">r_{"{ik}"}</span> assigns each point to its nearest centroid. Loss cannot increase.</li>
-                  <li><strong>Update Step:</strong> Holding assignments fixed, taking the derivative with respect to <span className="font-mono text-foreground">μₖ</span> and setting to zero yields the sample mean <span className="font-mono text-foreground">{"μₖ = (1/|Cₖ|) ∑ xᵢ"}</span>. Loss cannot increase.</li>
+                  <li><strong>Assignment Step:</strong> Holding centroids fixed, minimizing <span className="font-mono text-foreground">J</span> with respect to <InlineMath math="r_{ik}" /> assigns each point to its nearest centroid. Loss cannot increase.</li>
+                  <li><strong>Update Step:</strong> Holding assignments fixed, taking the derivative with respect to <span className="font-mono text-foreground">μₖ</span> and setting to zero yields the sample mean <InlineMath math="\mu_k = \frac{1}{|C_k|} \sum x_i" />. Loss cannot increase.</li>
                 </ul>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Because <span className="font-mono text-foreground">J</span> decreases monotonically and the number of discrete partitions is finite (<span className="font-mono text-foreground">Kⁿ</span>), Lloyd's algorithm is guaranteed to converge in a finite number of iterations to a local optimum.
@@ -725,7 +642,7 @@ function LearnPage() {
                 <li className="border-l-2 border-foreground/30 pl-4 py-1">
                   <h4 className="font-serif text-lg text-foreground font-medium">Step 5: Centroid Repositioning (Update Step)</h4>
                   <p className="text-sm mt-1">
-                    Recalculate each centroid as the arithmetic mean of all points assigned to that cluster: <span className="font-mono text-foreground font-semibold">{"μₖ = (1/|Cₖ|) ∑_{x ∈ Cₖ} x"}</span>.
+                    Recalculate each centroid as the arithmetic mean of all points assigned to that cluster: <InlineMath math="\mu_k = \frac{1}{|C_k|} \sum_{x \in C_k} x" className="font-medium text-foreground ml-1" />.
                   </p>
                 </li>
 

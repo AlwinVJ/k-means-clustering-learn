@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { TOPICS, type TopicItem } from "../routes/learn";
+import { TOPICS, type TopicItem } from "../data/learningTopics";
 
 describe("Learning Path 9 Topics & Anchor Navigation", () => {
   it("contains exactly all nine required curriculum topics", () => {

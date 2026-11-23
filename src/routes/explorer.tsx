@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Pause, Play, RotateCcw, SkipForward, RefreshCw, CheckCircle2, Info, Sparkles } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Container, PageHeader, PrevNext, SectionHeading, VizFrame } from "@/components/site/primitives";
+import { Container, InlineMath, PageHeader, PrevNext, SectionHeading, VizFrame } from "@/components/site/primitives";
 import {
   generatePoints,
   initCentroids,
@@ -573,7 +573,7 @@ function Explorer() {
                 <li className="border-l-2 pl-4 py-1">
                   <h4 className="font-serif text-lg text-foreground font-medium">5. Centroid Repositioning (Update Step)</h4>
                   <p className="text-sm mt-1">
-                    Recalculate the position of each centroid by taking the arithmetic mean of all points assigned to that cluster: <span className="font-mono text-foreground font-medium">μₖ = (1 / |Cₖ|) ∑_(x ∈ Cₖ) x</span>.
+                    Recalculate the position of each centroid by taking the arithmetic mean of all points assigned to that cluster: <InlineMath math="\mu_k = \frac{1}{|C_k|} \sum_{x \in C_k} x" className="font-medium text-foreground ml-1" />.
                   </p>
                 </li>
 
