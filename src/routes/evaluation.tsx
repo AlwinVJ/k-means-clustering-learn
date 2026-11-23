@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BarChart3, TrendingDown, Target, CheckCircle, AlertTriangle } from "lucide-react";
-import { Container, MathBlock, PageHeader, PrevNext, SectionHeading, VizFrame } from "@/components/site/primitives";
+import { BlockMath, Container, InlineMath, MathBlock, PageHeader, PrevNext, SectionHeading, VizFrame } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/evaluation")({
   head: () => ({
@@ -216,23 +216,27 @@ function EvaluationPage() {
                 <div className="border p-4 rounded-sm bg-paper space-y-1">
                   <span className="eyebrow text-accent">Cohesion: a(i)</span>
                   <p className="text-xs text-muted-foreground">Mean distance from sample i to all other points within its own cluster:</p>
-                  <p className="font-mono text-xs text-foreground bg-background p-2 rounded border mt-2">
-                    {"a(i) = (1 / (|C_I| − 1)) ∑_{j ∈ C_I, j ≠ i} ‖xᵢ − xⱼ‖"}
-                  </p>
+                  <BlockMath
+                    math="a(i) = \frac{1}{|C_I| - 1} \sum_{j \in C_I, j \ne i} \|x_i - x_j\|"
+                    className="bg-background p-2.5 rounded border mt-2 text-xs sm:text-sm"
+                  />
                 </div>
 
                 <div className="border p-4 rounded-sm bg-paper space-y-1">
                   <span className="eyebrow text-foreground">Separation: b(i)</span>
                   <p className="text-xs text-muted-foreground">Mean distance from sample i to points in the closest neighboring cluster:</p>
-                  <p className="font-mono text-xs text-foreground bg-background p-2 rounded border mt-2">
-                    {"b(i) = min_{J ≠ I} (1 / |C_J|) ∑_{j ∈ C_J} ‖xᵢ − xⱼ‖"}
-                  </p>
+                  <BlockMath
+                    math="b(i) = \min_{J \ne I} \frac{1}{|C_J|} \sum_{j \in C_J} \|x_i - x_j\|"
+                    className="bg-background p-2.5 rounded border mt-2 text-xs sm:text-sm"
+                  />
                 </div>
               </div>
 
-              <MathBlock label="Silhouette Coefficient Formula" number="Eq. 7">
-                <span>{"s(i) = ( b(i) − a(i) ) / max( a(i), b(i) )  ∈  [−1, +1]"}</span>
-              </MathBlock>
+              <MathBlock
+                label="Silhouette Coefficient Formula"
+                number="Eq. 7"
+                math="s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))} \in [-1, +1]"
+              />
 
               <div className="rounded-sm border bg-paper p-5 space-y-3">
                 <h4 className="font-serif text-lg text-foreground">How to Interpret the Silhouette Coefficient</h4>
@@ -255,7 +259,7 @@ function EvaluationPage() {
               <div className="space-y-2">
                 <h4 className="font-serif text-lg text-foreground">Global Mean Silhouette Score</h4>
                 <p className="text-sm text-muted-foreground">
-                  The overall model score is the arithmetic mean across all samples: <span className="font-mono text-foreground font-medium">{"S = (1 / n) ∑_{i=1}^n s(i)"}</span>. The candidate <span className="font-mono text-foreground">K</span> that maximizes <span className="font-mono text-foreground">S</span> provides the geometrically soundest cluster partition.
+                  The overall model score is the arithmetic mean across all samples: <InlineMath math="S = \frac{1}{n} \sum_{i=1}^n s(i)" className="font-medium text-foreground mx-1" />. The candidate <span className="font-mono text-foreground">K</span> that maximizes <span className="font-mono text-foreground">S</span> provides the geometrically soundest cluster partition.
                 </p>
               </div>
             </div>
@@ -283,9 +287,10 @@ function EvaluationPage() {
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     Evaluates the similarity between each cluster and its most similar adversary, expressed as the sum of intra-cluster scatter divided by centroid separation:
                   </p>
-                  <p className="font-mono text-xs text-foreground bg-background p-2.5 rounded border">
-                    {"DB = (1 / K) ∑_{i=1}^K max_{j ≠ i} ( (sᵢ + sⱼ) / d(μᵢ, μⱼ) )"}
-                  </p>
+                  <BlockMath
+                    math="\text{DB} = \frac{1}{K} \sum_{i=1}^K \max_{j \ne i} \left( \frac{s_i + s_j}{d(\mu_i, \mu_j)} \right)"
+                    className="bg-background p-2.5 rounded border text-xs sm:text-sm"
+                  />
                   <p className="text-xs text-muted-foreground">
                     Where <span className="font-mono">sᵢ</span> is the average point-to-centroid distance within cluster <span className="font-mono">i</span>. Lower values indicate compact clusters that are far apart from each other.
                   </p>
@@ -299,9 +304,10 @@ function EvaluationPage() {
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     The ratio of between-cluster dispersion (separation) to within-cluster dispersion (compactness), normalized by degrees of freedom:
                   </p>
-                  <p className="font-mono text-xs text-foreground bg-background p-2.5 rounded border">
-                    CH = ( SSB / (K − 1) ) / ( SSW / (n − K) )
-                  </p>
+                  <BlockMath
+                    math="\text{CH} = \frac{\text{SSB} / (K - 1)}{\text{SSW} / (n - K)}"
+                    className="bg-background p-2.5 rounded border text-xs sm:text-sm"
+                  />
                   <p className="text-xs text-muted-foreground">
                     Where <span className="font-mono">SSB</span> is Between-Cluster Sum of Squares and <span className="font-mono">SSW</span> is Within-Cluster Sum of Squares. Computes much faster than Silhouette score on massive datasets.
                   </p>
@@ -331,9 +337,10 @@ function EvaluationPage() {
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   The <strong>Rand Index</strong> evaluates all pairs of points, calculating the fraction of pairs that are either grouped together or placed in separate clusters in both predicted and ground-truth partitions. The <strong>Adjusted Rand Index (ARI)</strong> corrects this for chance overlap:
                 </p>
-                <p className="font-mono text-xs text-foreground bg-background p-2.5 rounded border">
-                  ARI = ( Index − Expected_Index ) / ( Max_Index − Expected_Index )
-                </p>
+                <BlockMath
+                  math="\text{ARI} = \frac{\text{Index} - \mathbb{E}[\text{Index}]}{\max(\text{Index}) - \mathbb{E}[\text{Index}]}"
+                  className="bg-background p-2.5 rounded border text-xs sm:text-sm"
+                />
                 <ul className="text-xs text-muted-foreground space-y-1">
                   <li><span className="font-mono text-foreground font-medium">1.0:</span> Perfect identical cluster assignments.</li>
                   <li><span className="font-mono text-foreground font-medium">0.0:</span> Agreement expected by pure random chance.</li>

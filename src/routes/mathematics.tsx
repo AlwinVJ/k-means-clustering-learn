@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Container, MathBlock, PageHeader, PrevNext, SectionHeading } from "@/components/site/primitives";
+import { BlockMath, Container, InlineMath, MathBlock, PageHeader, PrevNext, SectionHeading } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/mathematics")({
   head: () => ({
@@ -83,18 +83,22 @@ function MathematicsPage() {
                 </p>
               </div>
 
-              <MathBlock label="Euclidean Distance (L₂ Norm)" number="Eq. 1">
-                <span>d(x, μ) = ‖x − μ‖₂ = √( ∑ⱼ₌₁ᵈ (xⱼ − μⱼ)² )</span>
-              </MathBlock>
+              <MathBlock
+                label="Euclidean Distance (L₂ Norm)"
+                number="Eq. 1"
+                math="d(x, \mu) = \|x - \mu\|_2 = \sqrt{\sum_{j=1}^d (x_j - \mu_j)^2}"
+              />
 
               <div className="space-y-3">
                 <h4 className="font-serif text-lg text-foreground">Squared Euclidean Distance</h4>
                 <p className="text-sm text-muted-foreground">
                   Because the square root is a strictly monotonic transformation for non-negative arguments, minimizing the Euclidean distance is computationally and mathematically identical to minimizing the <em>squared Euclidean distance</em>:
                 </p>
-                <MathBlock label="Squared Euclidean Distance" number="Eq. 2">
-                  <span>‖x − μ‖² = ∑ⱼ₌₁ᵈ (xⱼ − μⱼ)²</span>
-                </MathBlock>
+                <MathBlock
+                  label="Squared Euclidean Distance"
+                  number="Eq. 2"
+                  math="\|x - \mu\|^2 = \sum_{j=1}^d (x_j - \mu_j)^2"
+                />
                 <p className="text-sm text-muted-foreground">
                   Working directly with squared distance eliminates unnecessary floating-point square root operations and provides continuous differentiability at every point.
                 </p>
@@ -130,17 +134,21 @@ function MathematicsPage() {
                 Given a cluster partition <span className="font-mono text-foreground">Cₖ</span> consisting of <span className="font-mono text-foreground">|Cₖ|</span> observations, the representative prototype <span className="font-mono text-foreground">μₖ</span> is defined as the multi-dimensional arithmetic center of mass:
               </p>
 
-              <MathBlock label="Centroid Vector Formulation" number="Eq. 3">
-                <span>{"μₖ = ( 1 / |Cₖ| ) ∑_{x ∈ Cₖ} x"}</span>
-              </MathBlock>
+              <MathBlock
+                label="Centroid Vector Formulation"
+                number="Eq. 3"
+                math="\mu_k = \frac{1}{|C_k|} \sum_{x \in C_k} x"
+              />
 
               <p className="text-sm text-muted-foreground">
                 In coordinate-wise scalar form for each feature dimension <span className="font-mono text-foreground">j ∈ &#123;1, ..., d&#125;</span>:
               </p>
 
-              <MathBlock label="Coordinate-Wise Component Mean" number="Eq. 4">
-                <span>{"μ_{k, j} = ( 1 / |Cₖ| ) ∑_{i ∈ Cₖ} x_{i, j}"}</span>
-              </MathBlock>
+              <MathBlock
+                label="Coordinate-Wise Component Mean"
+                number="Eq. 4"
+                math="\mu_{k, j} = \frac{1}{|C_k|} \sum_{x \in C_k} x_j"
+              />
 
               <div className="rounded-sm border bg-paper p-5 space-y-3">
                 <p className="eyebrow text-accent">Worked Numerical Example</p>
@@ -157,17 +165,19 @@ function MathematicsPage() {
               <div className="border-l-2 pl-4 space-y-2">
                 <h4 className="font-serif text-lg text-foreground">Proof of Centroid Optimality</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Why is the arithmetic mean the optimal center? Let <span className="font-mono">{"f(c) = ∑_{i=1}^n ‖xᵢ − c‖²"}</span> be the sum of squared deviations from an arbitrary point <span className="font-mono">c</span>. Taking the gradient with respect to <span className="font-mono">c</span>:
+                  Why is the arithmetic mean the optimal center? Let <InlineMath math="f(c) = \sum_{i=1}^n \|x_i - c\|^2" /> be the sum of squared deviations from an arbitrary point <InlineMath math="c" />. Taking the gradient with respect to <InlineMath math="c" />:
                 </p>
-                <p className="font-mono text-xs text-foreground bg-paper p-2 rounded">
-                  {"∇_c f(c) = ∑_{i=1}^n −2(xᵢ − c) = −2 ( ∑_{i=1}^n xᵢ − n · c )"}
-                </p>
+                <BlockMath
+                  math="\nabla_c f(c) = \sum_{i=1}^n -2(x_i - c) = -2 \left( \sum_{i=1}^n x_i - n \cdot c \right)"
+                  className="bg-paper p-2 rounded text-xs sm:text-sm"
+                />
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Setting the gradient to zero to find the stationary point:
                 </p>
-                <p className="font-mono text-xs text-foreground bg-paper p-2 rounded">
-                  {"−2 ( ∑_{i=1}^n xᵢ − n · c ) = 0  ⟹  n · c = ∑_{i=1}^n xᵢ  ⟹  c* = (1 / n) ∑_{i=1}^n xᵢ"}
-                </p>
+                <BlockMath
+                  math="-2 \left( \sum_{i=1}^n x_i - n \cdot c \right) = 0 \implies n \cdot c = \sum_{i=1}^n x_i \implies c^* = \frac{1}{n} \sum_{i=1}^n x_i"
+                  className="bg-paper p-2 rounded text-xs sm:text-sm"
+                />
                 <p className="text-xs text-muted-foreground">
                   The Hessian matrix is <span className="font-mono">∇²_c f(c) = 2n · I &gt; 0</span> (strictly positive definite), proving that the sample mean is the unique global minimum of squared Euclidean deviations.
                 </p>
@@ -183,9 +193,11 @@ function MathematicsPage() {
                 The <strong>Within-Cluster Sum of Squares (WCSS)</strong>, often termed <em>Inertia</em> in software packages such as scikit-learn, aggregates the dispersion of all points around their assigned centroids across all <span className="font-mono text-foreground">K</span> clusters:
               </p>
 
-              <MathBlock label="Within-Cluster Sum of Squares (WCSS / Inertia)" number="Eq. 5">
-                <span>{"WCSS = ∑_{k=1}^K ∑_{x ∈ Cₖ} ‖x − μₖ‖²"}</span>
-              </MathBlock>
+              <MathBlock
+                label="Within-Cluster Sum of Squares (WCSS / Inertia)"
+                number="Eq. 5"
+                math="\text{WCSS} = \sum_{k=1}^K \sum_{x \in C_k} \|x - \mu_k\|^2"
+              />
 
               <div className="grid gap-4 sm:grid-cols-2 my-4">
                 <div className="border p-4 rounded-sm bg-paper">
@@ -219,9 +231,11 @@ function MathematicsPage() {
                 Formally, K-Means is an optimization problem over two coupled sets of variables: the discrete cluster assignments and the continuous centroid coordinates.
               </p>
 
-              <MathBlock label="K-Means Global Loss Function" number="Eq. 6">
-                <span>{"J(R, M) = ∑_{i=1}^n ∑_{k=1}^K r_{ik} · ‖xᵢ − μₖ‖²"}</span>
-              </MathBlock>
+              <MathBlock
+                label="K-Means Global Loss Function"
+                number="Eq. 6"
+                math="J(R, M) = \sum_{i=1}^n \sum_{k=1}^K r_{ik} \cdot \|x_i - \mu_k\|^2"
+              />
 
               <div className="rounded-sm border bg-paper p-5 space-y-3">
                 <h4 className="font-serif text-lg text-foreground">Symbol-by-Symbol Anatomy</h4>
@@ -230,9 +244,9 @@ function MathematicsPage() {
                   <li><span className="font-mono font-medium text-foreground">K:</span> Number of target clusters (user-specified hyperparameter).</li>
                   <li><span className="font-mono font-medium text-foreground">xᵢ ∈ ℝᵈ:</span> The i-th observation feature vector.</li>
                   <li><span className="font-mono font-medium text-foreground">μₖ ∈ ℝᵈ:</span> The centroid prototype vector for cluster k.</li>
-                  <li><span className="font-mono font-medium text-foreground">r_&#123;ik&#125; ∈ &#123;0, 1&#125;:</span> Binary assignment indicator (1 if observation xᵢ belongs to cluster k, 0 otherwise).</li>
-                  <li><span className="font-mono font-medium text-foreground">Constraint:</span> {"∑_{k=1}^K r_{ik} = 1"} for all i (hard clustering: each point belongs to exactly one cluster).</li>
-                  <li><span className="font-mono font-medium text-foreground">‖xᵢ − μₖ‖²:</span> Squared Euclidean distance between point xᵢ and centroid μₖ.</li>
+                  <li><span className="font-mono font-medium text-foreground"><InlineMath math="r_{ik} \in \{0, 1\}" />:</span> Binary assignment indicator (1 if observation xᵢ belongs to cluster k, 0 otherwise).</li>
+                  <li><span className="font-mono font-medium text-foreground">Constraint:</span> <InlineMath math="\sum_{k=1}^K r_{ik} = 1" /> for all i (hard clustering: each point belongs to exactly one cluster).</li>
+                  <li><span className="font-mono font-medium text-foreground"><InlineMath math="\|x_i - \mu_k\|^2" />:</span> Squared Euclidean distance between point xᵢ and centroid μₖ.</li>
                 </ul>
               </div>
             </div>

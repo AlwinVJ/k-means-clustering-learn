@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { ReactNode } from "react";
+import katex from "katex";
+import { useMemo, type ReactNode } from "react";
 import type { NavTo } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -75,14 +76,71 @@ export function Placeholder({ label, lines = 3, className }: { label: string; li
   );
 }
 
-export function MathBlock({ label, number, children }: { label: string; number?: string; children?: ReactNode }) {
+export function InlineMath({ math, className }: { math: string; className?: string }) {
+  const html = useMemo(() => {
+    try {
+      return katex.renderToString(math, { displayMode: false, throwOnError: false });
+    } catch {
+      return math;
+    }
+  }, [math]);
+
+  return (
+    <span
+      className={cn("inline-math font-serif align-baseline", className)}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+}
+
+export function BlockMath({ math, className }: { math: string; className?: string }) {
+  const html = useMemo(() => {
+    try {
+      return katex.renderToString(math, { displayMode: true, throwOnError: false });
+    } catch {
+      return math;
+    }
+  }, [math]);
+
+  return (
+    <div
+      className={cn("overflow-x-auto overflow-y-hidden max-w-full py-1 text-center font-serif text-xl sm:text-2xl text-foreground", className)}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+}
+
+export function MathBlock({
+  label,
+  number,
+  math,
+  children,
+}: {
+  label: string;
+  number?: string;
+  math?: string;
+  children?: ReactNode;
+}) {
+  const html = useMemo(() => {
+    if (!math) return null;
+    try {
+      return katex.renderToString(math, { displayMode: true, throwOnError: false });
+    } catch {
+      return null;
+    }
+  }, [math]);
+
   return (
     <figure className="my-10 border-y py-9">
       <div className="flex items-center gap-6">
-        <div className="flex-1 text-center font-serif text-2xl sm:text-[1.75rem] md:text-[1.875rem] italic text-foreground leading-normal">
-          {children ?? <span className="text-muted-foreground/60 not-italic font-mono text-sm">[ equation · {label} ]</span>}
+        <div className="flex-1 text-center font-serif text-2xl sm:text-[1.75rem] md:text-[1.875rem] text-foreground leading-normal overflow-x-auto max-w-full py-1">
+          {html ? (
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          ) : (
+            children ?? <span className="text-muted-foreground/60 not-italic font-mono text-sm">[ equation · {label} ]</span>
+          )}
         </div>
-        {number && <span className="font-mono text-xs sm:text-sm text-muted-foreground">({number})</span>}
+        {number && <span className="font-mono text-xs sm:text-sm text-muted-foreground shrink-0">({number})</span>}
       </div>
       <figcaption className="mt-5 text-center eyebrow">{label}</figcaption>
     </figure>
