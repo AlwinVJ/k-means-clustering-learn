@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   ArrowDown,
+  ArrowUp,
+  ChevronDown,
+  ChevronUp,
   Layers,
   Sparkles,
   Compass,
@@ -121,6 +124,15 @@ export const TOPICS: TopicItem[] = [
 
 function LearnPage() {
   const [activeId, setActiveId] = useState<string>("unsupervised-learning");
+  const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
+
+  const currentTopic = TOPICS.find((t) => t.id === activeId) ?? TOPICS[0] ?? {
+    id: "unsupervised-learning",
+    n: 1,
+    title: "Introduction to Unsupervised Learning",
+    time: "15 min",
+    summary: "",
+  };
 
   // IntersectionObserver for tracking currently active topic as user scrolls
   useEffect(() => {
@@ -147,18 +159,24 @@ function LearnPage() {
     return () => observer.disconnect();
   }, []);
 
-  // Handle URL hash on initial page load
+  // Handle URL hash on initial page load and history pop/hashchange
   useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hash) {
-      const hashId = window.location.hash.replace("#", "");
-      const el = document.getElementById(hashId);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
-          setActiveId(hashId);
-        }, 150);
+    const handleHash = () => {
+      if (typeof window !== "undefined" && window.location.hash) {
+        const hashId = window.location.hash.replace("#", "");
+        const el = document.getElementById(hashId);
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth" });
+            setActiveId(hashId);
+          }, 150);
+        }
       }
-    }
+    };
+
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
   }, []);
 
   // Smooth scroll handler with URL hash synchronization
@@ -249,6 +267,75 @@ function LearnPage() {
           </ol>
         </Container>
       </section>
+
+      {/* Mobile & Tablet Sticky Active Section Bar */}
+      <div className="sticky top-16 z-30 lg:hidden border-b border-border/80 bg-background/95 backdrop-blur-md px-4 py-2.5 shadow-xs">
+        <div className="flex items-center justify-between gap-3 max-w-[1360px] mx-auto">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="font-mono text-xs text-accent font-semibold shrink-0">
+              § 0{currentTopic.n}
+            </span>
+            <span className="text-xs font-serif text-foreground truncate">
+              {currentTopic.title}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => setMobileNavOpen((prev) => !prev)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono rounded-sm border border-border bg-paper hover:bg-muted text-foreground transition-colors"
+              aria-expanded={mobileNavOpen}
+              aria-label="Toggle section navigation menu"
+            >
+              <span>Jump to</span>
+              {mobileNavOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.history.pushState(null, "", window.location.pathname);
+              }}
+              className="p-1 text-muted-foreground hover:text-foreground transition-colors"
+              title="Back to top"
+              aria-label="Back to top"
+            >
+              <ArrowUp size={14} />
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileNavOpen && (
+          <div className="mt-2 pt-2 border-t border-border/60 max-h-64 overflow-y-auto space-y-1">
+            {TOPICS.map((t) => {
+              const isActive = activeId === t.id;
+              return (
+                <a
+                  key={t.id}
+                  href={`#${t.id}`}
+                  onClick={(e) => {
+                    scrollToSection(e, t.id);
+                    setMobileNavOpen(false);
+                  }}
+                  className={`flex items-center justify-between px-2.5 py-1.5 text-xs rounded-sm transition-colors ${
+                    isActive
+                      ? "bg-accent/10 text-accent font-medium"
+                      : "text-muted-foreground hover:bg-paper hover:text-foreground"
+                  }`}
+                >
+                  <span className="truncate">
+                    <span className="font-mono mr-1.5 opacity-70">0{t.n}.</span>
+                    {t.title}
+                  </span>
+                  {isActive && <span className="font-mono text-[10px] text-accent shrink-0 ml-2">Active</span>}
+                </a>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
       {/* Main Educational Reading Layout */}
       <Container className="grid gap-12 py-16 lg:grid-cols-[16rem_1fr]">
