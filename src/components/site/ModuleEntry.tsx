@@ -2,16 +2,30 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { NavTo } from "@/lib/site";
 
-export function ModuleEntry({ n, title, time, to, compact }: { n: number; title: string; time: string; to: NavTo; compact?: boolean }) {
+export function ModuleEntry({
+  n,
+  title,
+  time,
+  to,
+  summary,
+  compact,
+}: {
+  n: number;
+  title: string;
+  time: string;
+  to: NavTo;
+  summary?: string;
+  compact?: boolean;
+}) {
   return (
     <li className="group border-b first:border-t">
       <Link to={to} className="grid grid-cols-[3rem_1fr_auto] items-baseline gap-4 py-6 md:grid-cols-[5rem_1fr_7rem_2rem] md:py-8">
         <span className="font-mono text-sm text-accent">{String(n).padStart(2, "0")}</span>
         <div>
           <h3 className="text-2xl leading-snug transition-colors group-hover:text-accent md:text-[1.75rem]">{title}</h3>
-          {!compact && (
-            <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-              Module summary to be written — a two-line description of what this module covers and why it matters.
+          {!compact && summary && (
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              {summary}
             </p>
           )}
         </div>
