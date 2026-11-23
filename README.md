@@ -1,200 +1,430 @@
-# K-Means Lab — An Interactive Study of Clustering
+<div align="center">
 
-[![Deploy to GitHub Pages](https://github.com/AlwinVJ/k-means-clustering-learn/actions/workflows/deploy.yml/badge.svg)](https://github.com/AlwinVJ/k-means-clustering-learn/actions/workflows/deploy.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-22.x-green.svg)](https://nodejs.org)
-[![Vite](https://img.shields.io/badge/Vite-8.x-purple.svg)](https://vitejs.dev)
+# K-Means Lab
 
-An interactive, monograph-grade educational platform dedicated to the **K-Means Clustering Algorithm**. Designed with an editorial aesthetic, mathematical rigor, and real-time interactive simulations, K-Means Lab bridges intuitive visual understanding, mathematical proofs, and production-grade implementations.
+### Understanding Clustering Through Mathematics, Visualization & Experimentation.
 
-**Live Deployment URL:** [https://alwinvj.github.io/k-means-clustering-learn/](https://alwinvj.github.io/k-means-clustering-learn/)
+An interactive learning platform dedicated to exploring K-Means Clustering — from the fundamentals of unsupervised learning to mathematical foundations, algorithmic implementation, and practical experimentation.
 
----
+<br/>
 
-## 🌟 Key Features
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Website-344E41?style=flat-square)](YOUR_DEPLOYMENT_URL)
+[![Built with React](https://img.shields.io/badge/React-TypeScript-3178C6?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
+[![Styling](https://img.shields.io/badge/Styling-Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-BC6C25?style=flat-square)](LICENSE)
 
-1. **Interactive Algorithm Explorer:**
-   - Real-time 2D simulation canvas stepping through Lloyd's algorithm iteration by iteration.
-   - Choose across 4 data distributions: *Gaussian blobs*, *Uniform noise*, *Concentric rings*, and *Anisotropic clusters*.
-   - Dynamic $K$ selection ($K \in [1, 8]$) with distinct, accessible color palettes.
-   - Centroid initialization with **K-Means++** and **Uniform Random Selection**.
-   - Motion vector visualization displaying centroid movement trails across updates.
-   - Live telemetry: step counter, Voronoi reassignments, and Within-Cluster Sum of Squares (WCSS / Inertia).
+<br/>
 
-2. **Rigorous Mathematical Foundations:**
-   - Detailed derivation of Euclidean distance and squared $L_2$ properties.
-   - Calculus proof demonstrating sample arithmetic mean optimality as the unique global minimizer of intra-cluster variance.
-   - Formal breakdown of the K-Means global objective function $J(R, M)$ and Lloyd's block coordinate descent.
-   - Proof of finite convergence and non-increasing loss.
+**Explore. Understand. Experiment.**
 
-3. **Cluster Validation & Evaluation:**
-   - The Elbow Method: WCSS scree plots, inflection point analysis, and diminishing return criteria.
-   - Silhouette Analysis: Intra-cluster cohesion $a(i)$, nearest-cluster separation $b(i)$, and interpretation of $[-1, +1]$ coefficients.
-   - Internal metrics: Davies-Bouldin Index (DBI) and Calinski-Harabasz Variance Ratio Criterion.
-   - External metrics: Adjusted Rand Index (ARI) for benchmarking against ground-truth labels.
-   - Critical failure modes: non-spherical geometries, varying densities, outlier leverage, and high-dimensional distance concentration.
-
-4. **Multi-Paradigm Code Tutorials:**
-   - **Pure Python from Scratch:** Zero third-party dependencies, implementing distance calculation, assignment, centroid update, and convergence loops.
-   - **Vectorized NumPy:** Utilizing multidimensional broadcasting `(N, 1, D) - (1, K, D)` for C-level SIMD performance.
-   - **Production Scikit-Learn:** Complete ML pipelines featuring `StandardScaler`, `KMeans(init='k-means++', n_init=10)`, and comprehensive evaluation metrics.
-
-5. **Warm Editorial Visual Identity:**
-   - Distinct serif typography using *Newsreader*, modern sans-serif using *IBM Plex Sans*, and code typography using *JetBrains Mono*.
-   - Thoughtful paper-tone color palette with custom terracotta, sage, slate, and amber cluster accents.
+</div>
 
 ---
 
-## 📚 Curriculum Structure
+## 01. Overview
 
-| Module | Title | Chapter Route | Core Focus |
-| :---: | :--- | :--- | :--- |
-| **01** | Introduction to Unsupervised Learning | `/learn#module-1` | Machine learning paradigms, labeled vs unlabeled data, taxonomy of unsupervised learning. |
-| **02** | Introduction to Clustering | `/learn#module-2` | Cluster compactness, inter-cluster separation, metric axioms, comparison of 4 clustering families. |
-| **03** | K-Means Fundamentals | `/explorer#fundamentals` | Meaning of K and centroids, Voronoi partitions, numerical intuition. |
-| **04** | Mathematical Foundations | `/mathematics` | Euclidean metric, arithmetic mean proof, WCSS formulation, objective coordinate descent. |
-| **05** | How K-Means Works | `/explorer#algorithm-steps` | Complete 7-step pipeline, Random vs K-Means++ seeding, convergence criteria. |
-| **06** | Choosing the Optimal K | `/evaluation#elbow` | Elbow method, rate of variance change, curvature diagnostics. |
-| **07** | Evaluating Performance | `/evaluation#silhouette` | Silhouette analysis, Davies-Bouldin index, Calinski-Harabasz, Adjusted Rand Index. |
-| **08** | Practical Implementation | `/implementation` | Executable tutorials in pure Python, vectorized NumPy, and scikit-learn. |
-| **09** | Real-World Applications & Limits | `/learn#module-9` | Customer RFM segmentation, image color quantization, geo-facility placement, failure modes. |
+K-Means Lab is an educational platform designed to make the concepts behind K-Means Clustering easier to understand through structured explanations, mathematical reasoning, interactive visualizations, and practical Python implementations.
 
----
+Rather than treating machine learning algorithms as black-box functions, this platform focuses on understanding what happens internally, why each operation is necessary, and how mathematical principles translate into working code.
 
-## 🛠️ Technology Stack
+The learning experience progresses from introductory concepts to algorithmic mechanics and practical applications.
 
-- **Framework:** [React 19](https://react.dev) + [TypeScript](https://www.typescriptlang.org)
-- **Routing:** [TanStack Router](https://tanstack.com/router) (Client-side SPA with type-safe route trees)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) with `@tailwindcss/vite`
-- **Build Tool:** [Vite 8](https://vitejs.dev)
-- **Icons:** [Lucide React](https://lucide.dev)
-- **Testing:** [Vitest](https://vitest.dev) + `@testing-library/react`
-- **Deployment:** GitHub Pages via GitHub Actions (`actions/upload-pages-artifact@v3`, `actions/deploy-pages@v4`)
+### What makes K-Means Lab different?
+
+- **Conceptual Learning:** Understand clustering and unsupervised learning from the ground up.
+- **Mathematical Foundations:** Explore distance calculations, centroid updates, WCSS, and optimization objectives.
+- **Visual Experimentation:** Observe how data points are assigned to clusters and how centroids evolve across iterations.
+- **Practical Implementation:** Understand K-Means through implementations using Python, NumPy, and Scikit-learn.
+- **Evaluation Techniques:** Learn how to evaluate clustering quality and determine an appropriate number of clusters.
 
 ---
 
-## 📁 Project Directory Structure
+## 02. Learning Roadmap
+
+The platform follows a structured learning path designed to build conceptual understanding progressively.
+
+| Module | Topics |
+|:--|:--|
+| 01 | Introduction to Unsupervised Learning |
+| 02 | Understanding Clustering |
+| 03 | K-Means Clustering Fundamentals |
+| 04 | Mathematical Foundations |
+| 05 | How the K-Means Algorithm Works |
+| 06 | Choosing the Optimal Number of Clusters |
+| 07 | Evaluating Clustering Performance |
+| 08 | Practical Python Implementation |
+| 09 | Limitations and Real-World Applications |
+
+Each module connects theoretical concepts with practical reasoning.
+
+---
+
+## 03. Core Features
+
+### Interactive Algorithm Explorer
+
+Explore the internal mechanics of K-Means through a two-dimensional visualization.
+
+The explorer is designed to demonstrate:
+
+- Dataset generation and selection.
+- Configurable number of clusters (K).
+- Centroid initialization.
+- Distance-based cluster assignment.
+- Centroid recalculation.
+- Iteration-by-iteration execution.
+- Centroid movement.
+- Cluster convergence.
+- Within-Cluster Sum of Squares (WCSS).
+
+The objective is to make every stage of the algorithm observable rather than hiding the process behind a single model-fitting operation.
+
+### Mathematical Foundations
+
+Understand the mathematical principles that drive K-Means.
+
+Topics include:
+
+- Euclidean Distance
+- Centroid Calculation
+- Within-Cluster Sum of Squares (WCSS)
+- K-Means Objective Function
+- Iterative Optimization
+- Convergence Criteria
+
+Mathematical expressions are accompanied by explanations and numerical examples to connect equations with their practical meaning.
+
+### Clustering Evaluation
+
+Explore different techniques for assessing clustering quality.
+
+- Elbow Method
+- Silhouette Score
+- Davies-Bouldin Index
+- Calinski-Harabasz Index
+- Adjusted Rand Index
+
+Understand what each metric measures, how to interpret its output, and when it is appropriate to use.
+
+### Practical Python Implementations
+
+Move from mathematical understanding to working implementations.
+
+- K-Means from scratch using Python and NumPy.
+- Vectorized implementation using NumPy.
+- K-Means implementation using Scikit-learn.
+- Feature scaling and preprocessing.
+- Cluster visualization and evaluation.
+
+---
+
+## 04. Understanding the Algorithm
+
+K-Means is a partition-based clustering algorithm that divides a dataset into K clusters by assigning observations to their nearest cluster centroid.
+
+Its objective is to minimize the total within-cluster sum of squared distances.
+
+Mathematically:
+
+\[
+J = \sum_{j=1}^{K}\sum_{x_i \in C_j}
+\|x_i-\mu_j\|^2
+\]
+
+Where:
+
+- \(K\) represents the number of clusters.
+- \(C_j\) represents the set of observations assigned to cluster \(j\).
+- \(x_i\) represents an individual observation.
+- \(\mu_j\) represents the centroid of cluster \(j\).
+- \(J\) represents the total within-cluster sum of squared distances.
+
+### Algorithm Workflow
 
 ```text
-k-means-clustering-learn/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Pages CI/CD deployment pipeline
-├── public/
-│   ├── favicon.ico             # Multi-size official favicon (16x16, 32x32, 48x48)
-│   ├── favicon-16x16.png       # Standard 16px icon
-│   ├── favicon-32x32.png       # Standard 32px icon
-│   ├── apple-touch-icon.png    # 180px Apple touch icon
-│   ├── android-chrome-192x192.png
-│   ├── android-chrome-512x512.png
-│   ├── logo.png                # Official K-Means Lab emblem
-│   ├── site.webmanifest        # PWA application manifest
-│   └── robots.txt
-├── src/
-│   ├── components/
-│   │   ├── site/               # Reusable site-wide components
-│   │   │   ├── ClusterFigure.tsx
-│   │   │   ├── ModuleEntry.tsx
-│   │   │   ├── primitives.tsx  # PageHeader, SectionHeading, MathBlock, CodeBlock, VizFrame, PrevNext
-│   │   │   ├── SiteFooter.tsx
-│   │   │   └── SiteHeader.tsx
-│   │   └── ui/                 # Radix UI primitive wrappers
-│   ├── lib/
-│   │   ├── kmeans-engine.ts    # Deterministic 2D K-Means simulation engine
-│   │   ├── site.ts             # Central navigation and curriculum module definitions
-│   │   └── utils.ts            # Utility functions (cn class-merging)
-│   ├── routes/                 # TanStack Router filesystem routes
-│   │   ├── __root.tsx          # Root layout shell
-│   │   ├── index.tsx           # Monograph home page
-│   │   ├── learn.tsx           # Modules 1, 2, and 9
-│   │   ├── explorer.tsx        # Interactive simulator + Modules 3 and 5
-│   │   ├── mathematics.tsx     # Module 4
-│   │   ├── implementation.tsx  # Module 8
-│   │   └── evaluation.tsx      # Modules 6 and 7
-│   ├── test/
-│   │   ├── app-routing.test.tsx
-│   │   └── kmeans-engine.test.ts
-│   ├── main.tsx                # Client application mounting entry
-│   ├── router.tsx              # Router initialization with basepath support
-│   ├── routeTree.gen.ts        # Auto-generated TanStack route tree
-│   └── styles.css              # Editorial Tailwind CSS v4 design tokens
-├── index.html                  # HTML entry point with metadata and fonts
-├── package.json
-├── tsconfig.json
-└── vite.config.ts              # Vite configuration optimized for GitHub Pages
+       Input Dataset
+             |
+             v
+    Choose Number of K
+             |
+             v
+   Initialize Centroids
+             |
+             v
+  Calculate Point Distances
+             |
+             v
+   Assign Nearest Cluster
+             |
+             v
+    Update the Centroids
+             |
+             v
+      Has it Converged?
+          /       \
+        No         Yes
+        |           |
+        └── Repeat  v
+                Final Clusters
 ```
+
+The algorithm repeatedly performs two fundamental operations:
+
+1. **Assignment Step:** Assign each observation to its nearest centroid.
+2. **Update Step:** Recalculate each centroid using the mean of its assigned observations.
+
+These operations continue until the algorithm satisfies its stopping condition.
 
 ---
 
-## 🚀 Local Development
+## 05. Technology Stack
+
+The project uses a modern frontend stack focused on performance, maintainability, and static deployment.
+
+| Technology | Purpose |
+|:--|:--|
+| React | Component-based frontend architecture |
+| TypeScript | Type safety and maintainable development |
+| Tailwind CSS | Utility-first styling |
+| Vite | Development server and production build |
+| Lucide React | Interface icons |
+| Math rendering library | Mathematical notation |
+| GitHub Pages | Static website hosting |
+| GitHub Actions | Automated build and deployment |
+
+Additional libraries may be used where they provide meaningful functionality without unnecessarily increasing project complexity.
+
+---
+
+## 06. Project Structure
+
+The project follows a modular frontend architecture.
+
+```text
+k-means-lab/
+│
+├── public/
+│   ├── favicon.ico
+│   └── assets/
+│
+├── src/
+│   ├── assets/
+│   │
+│   ├── components/
+│   │   ├── navigation/
+│   │   ├── layout/
+│   │   ├── visualization/
+│   │   └── shared/
+│   │
+│   ├── pages/
+│   │   ├── Home/
+│   │   ├── LearningPath/
+│   │   ├── AlgorithmExplorer/
+│   │   ├── Mathematics/
+│   │   ├── Implementation/
+│   │   └── Evaluation/
+│   │
+│   ├── content/
+│   │
+│   ├── hooks/
+│   │
+│   ├── utils/
+│   │
+│   ├── types/
+│   │
+│   ├── App.tsx
+│   └── main.tsx
+│
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
+├── index.html
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+├── vite.config.ts
+├── tailwind.config.js
+└── README.md
+```
+
+*The structure above represents the intended organization. Actual filenames and directories may differ depending on the implementation.*
+
+---
+
+## 07. Getting Started
+
+Follow these instructions to run the project locally.
 
 ### Prerequisites
 
-Ensure you have Node.js 20+ or 22+ and npm installed:
+Ensure that the following tools are installed:
+
+- Node.js (compatible with the project's configured version).
+- npm.
+- Git.
+
+### Clone the Repository
 
 ```bash
-node -v   # v22.x recommended
-npm -v    # 10.x recommended
+git clone YOUR_REPOSITORY_URL
 ```
 
-### 1. Clone the Repository
+Navigate into the project directory:
 
 ```bash
-git clone https://github.com/AlwinVJ/k-means-clustering-learn.git
-cd k-means-clustering-learn
+cd k-means-lab
 ```
 
-### 2. Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Start Development Server
+### Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Vite will start the development server. Open the local URL displayed in your terminal.
 
-### 4. Run Tests & Type Checks
+### Production Build
 
-```bash
-# Run unit tests
-npm run test
-
-# Run strict TypeScript type check
-npx tsc --noEmit
-```
-
-### 5. Build for Production Locally
+Generate an optimized production build:
 
 ```bash
 npm run build
+```
+
+The generated static files will be available in the configured build output directory, typically `dist/`.
+
+### Preview Production Build
+
+```bash
 npm run preview
 ```
 
----
-
-## 🚢 GitHub Pages Deployment
-
-The repository is configured for automated static deployment via GitHub Actions:
-
-1. When changes are pushed to `main`, `.github/workflows/deploy.yml` triggers automatically.
-2. The workflow installs dependencies via `npm ci`, runs TypeScript type checking (`npx tsc --noEmit`), executes unit tests (`npm run test`), and builds the static assets to `./dist`.
-3. The build plugin automatically duplicates `dist/index.html` to `dist/404.html` to ensure client-side deep linking and direct page refreshes function seamlessly under GitHub Pages.
-4. Assets are deployed directly to GitHub Pages at:
-   `https://alwinvj.github.io/k-means-clustering-learn/`
-
-### Manual Deployment Verification
-
-To enable GitHub Pages in your repository settings:
-- Navigate to **Settings** → **Pages** on your GitHub repository.
-- Under **Build and deployment** → **Source**, select **GitHub Actions**.
+This allows you to inspect the production build locally before deployment.
 
 ---
 
-## 📄 License
+## 08. Deployment
 
-This educational project is released under the MIT License.
+K-Means Lab is designed for deployment using GitHub Pages.
+
+The project uses a static deployment architecture, eliminating the need for a dedicated backend server.
+
+### Deployment Workflow
+
+The intended deployment process uses GitHub Actions.
+
+```text
+       Push to GitHub
+              |
+              v
+       GitHub Actions
+              |
+              v
+      Install Dependencies
+              |
+              v
+       Type Checking
+              |
+              v
+        Run Tests
+              |
+              v
+      Production Build
+              |
+              v
+       GitHub Pages
+              |
+              v
+       Published Website
+```
+
+### Deployment Configuration
+
+Before deployment, ensure that:
+
+1. The correct repository base path is configured in Vite.
+2. Static asset references use deployment-compatible paths.
+3. Client-side routing works under the GitHub Pages repository subpath.
+4. GitHub Pages is configured to use GitHub Actions as its deployment source.
+5. Required repository permissions are enabled for the deployment workflow.
+
+Once configured, pushing changes to the deployment branch will trigger the automated workflow.
+
+---
+
+## 09. Learning Resources
+
+The platform's educational material should be supported by authoritative technical references.
+
+The following resources are useful for further exploration:
+
+| Resource | Description |
+|:--|:--|
+| [Scikit-learn — Clustering](https://scikit-learn.org/stable/modules/clustering.html) | Clustering algorithms and practical implementations |
+| [Scikit-learn — KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html) | K-Means API and implementation details |
+| [NumPy Documentation](https://numpy.org/doc/stable/) | Numerical computing and array operations |
+| [Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course) | Machine learning fundamentals |
+| [Stanford CS229](https://cs229.stanford.edu/) | Machine learning theory and mathematical foundations |
+
+---
+
+## 10. Project Philosophy
+
+Machine learning becomes easier to understand when we stop treating algorithms as predefined functions and start exploring the reasoning behind them.
+
+K-Means Lab follows three principles:
+
+**Understand Before Implementing**
+
+Build conceptual and mathematical understanding before relying on existing libraries.
+
+**Visualize Before Memorizing**
+
+Observe how algorithms operate rather than memorizing their steps.
+
+**Experiment Before Concluding**
+
+Test different datasets, parameters, and configurations to understand how algorithmic decisions influence the results.
+
+---
+
+## 11. Contributing
+
+Suggestions, improvements, and educational contributions are welcome.
+
+If you identify an incorrect explanation, mathematical inconsistency, implementation issue, or potential improvement:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Test your implementation.
+5. Submit a pull request describing your contribution.
+
+Educational accuracy and maintainable implementation are the primary considerations for accepting contributions.
+
+---
+
+## 12. License
+
+This project is distributed under the MIT License.
+
+See the [LICENSE](LICENSE) file for more information.
+
+---
+
+<div align="center">
+
+### K-Means Lab
+
+**From mathematical intuition to algorithmic understanding.**
+
+Built for learning. Designed for experimentation.
+
+</div>
