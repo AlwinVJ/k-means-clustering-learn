@@ -255,7 +255,7 @@ function EvaluationPage() {
               <div className="space-y-2">
                 <h4 className="font-serif text-lg text-foreground">Global Mean Silhouette Score</h4>
                 <p className="text-sm text-muted-foreground">
-                  The overall model score is the arithmetic mean across all samples: <span className="font-mono text-foreground font-medium">S = (1 / n) ∑_{i=1}^n s(i)</span>. The candidate <span className="font-mono text-foreground">K</span> that maximizes <span className="font-mono text-foreground">S</span> provides the geometrically soundest cluster partition.
+                  The overall model score is the arithmetic mean across all samples: <span className="font-mono text-foreground font-medium">{"S = (1 / n) ∑_{i=1}^n s(i)"}</span>. The candidate <span className="font-mono text-foreground">K</span> that maximizes <span className="font-mono text-foreground">S</span> provides the geometrically soundest cluster partition.
                 </p>
               </div>
             </div>

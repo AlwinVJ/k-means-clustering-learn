@@ -6,7 +6,7 @@ import path from "node:path";
 import fs from "node:fs";
 
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? "/k-means-clustering-learn/" : "/",
+  base: process.env["NODE_ENV"] === "production" ? "/k-means-clustering-learn/" : "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -157,7 +157,7 @@ function MathematicsPage() {
               <div className="border-l-2 pl-4 space-y-2">
                 <h4 className="font-serif text-lg text-foreground">Proof of Centroid Optimality</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Why is the arithmetic mean the optimal center? Let <span className="font-mono">f(c) = ∑_{i=1}^n ‖xᵢ − c‖²</span> be the sum of squared deviations from an arbitrary point <span className="font-mono">c</span>. Taking the gradient with respect to <span className="font-mono">c</span>:
+                  Why is the arithmetic mean the optimal center? Let <span className="font-mono">{"f(c) = ∑_{i=1}^n ‖xᵢ − c‖²"}</span> be the sum of squared deviations from an arbitrary point <span className="font-mono">c</span>. Taking the gradient with respect to <span className="font-mono">c</span>:
                 </p>
                 <p className="font-mono text-xs text-foreground bg-paper p-2 rounded">
                   {"∇_c f(c) = ∑_{i=1}^n −2(xᵢ − c) = −2 ( ∑_{i=1}^n xᵢ − n · c )"}
@@ -253,10 +253,10 @@ function MathematicsPage() {
                     <span className="font-mono text-xs text-muted-foreground">Expectation</span>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Given fixed centroid positions <span className="font-mono text-foreground">μ₁, ..., μₖ</span>, we minimize <span className="font-mono text-foreground">J</span> with respect to <span className="font-mono text-foreground">r_{ik}</span> independently for each point:
+                    Given fixed centroid positions <span className="font-mono text-foreground">μ₁, ..., μₖ</span>, we minimize <span className="font-mono text-foreground">J</span> with respect to <span className="font-mono text-foreground">{"r_{ik}"}</span> independently for each point:
                   </p>
                   <p className="font-mono text-xs text-foreground bg-background p-2.5 rounded border">
-                    r_{ik} = 1  if k = argmin_j ‖xᵢ − μⱼ‖²;  otherwise 0
+                    {"r_{ik} = 1  if k = argmin_j ‖xᵢ − μⱼ‖²;  otherwise 0"}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     This step partitions the feature space into Voronoi cells. Because each point selects its absolute closest centroid, <span className="font-mono text-foreground">J(R, M)</span> cannot increase.
@@ -286,7 +286,7 @@ function MathematicsPage() {
                   Because:
                 </p>
                 <ol className="list-decimal pl-5 space-y-1.5 text-xs text-muted-foreground">
-                  <li>The objective <span className="font-mono text-foreground">J(R, M)</span> is strictly non-increasing at every single sub-step (<span className="font-mono text-foreground">J^{t+1} ≤ J^t</span>).</li>
+                  <li>The objective <span className="font-mono text-foreground">J(R, M)</span> is strictly non-increasing at every single sub-step (<span className="font-mono text-foreground">{"J^{t+1} ≤ J^t"}</span>).</li>
                   <li>The objective is bounded below by zero (<span className="font-mono text-foreground">J ≥ 0</span>).</li>
                   <li>There are only a finite number <span className="font-mono text-foreground">Kⁿ</span> of distinct possible partition assignments.</li>
                 </ol>
