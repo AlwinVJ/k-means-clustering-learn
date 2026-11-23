@@ -101,10 +101,22 @@ function Home() {
         <Container className="grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-center">
           <div>
             <SectionHeading number="III." kicker="Laboratory" title="Experiment with the algorithm." />
-            <p className="max-w-md text-muted-foreground md:ml-24">Placeholder — the practical experimentation area will let readers change K, swap datasets and step through iterations.</p>
-            <Link to="/explorer" className="mt-6 inline-flex items-center gap-2 border-b border-foreground pb-0.5 text-sm hover:text-accent md:ml-24">Go to the Algorithm Explorer <ArrowRight size={14} /></Link>
+            <p className="max-w-md text-muted-foreground md:ml-24 leading-relaxed">
+              Step through iterations in real time. Choose from four synthetic dataset distributions, adjust K from 1 to 8, compare K-Means++ against random initialization, and monitor WCSS convergence step by step.
+            </p>
+            <Link to="/explorer" className="mt-6 inline-flex items-center gap-2 border-b border-foreground pb-0.5 text-sm font-medium hover:border-accent hover:text-accent md:ml-24">
+              Open the Algorithm Explorer <ArrowRight size={14} />
+            </Link>
           </div>
-          <Placeholder label="Experiment preview" lines={5} className="placeholder-lines aspect-[16/9]" />
+          <VizFrame title="Interactive Simulation Preview" toolbar={<span className="font-mono text-xs text-accent">live interactive canvas</span>}>
+            <div className="aspect-[16/10] p-4 bg-background">
+              <ClusterFigure grouped={true} />
+            </div>
+            <div className="border-t px-4 py-2 text-xs font-mono text-muted-foreground flex justify-between">
+              <span>Gaussian Blobs · K=3</span>
+              <span className="text-foreground">Click 'Open Explorer' to run</span>
+            </div>
+          </VizFrame>
         </Container>
       </section>
     </>
