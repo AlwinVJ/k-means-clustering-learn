@@ -21,7 +21,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
+      <div className="mx-auto flex h-16 max-w-[1360px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Logo />
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-7 text-sm">
@@ -50,7 +50,7 @@ export function SiteHeader() {
       </div>
       {open && (
         <nav id="mobile-nav" aria-label="Mobile" className="border-t lg:hidden">
-          <ul className="mx-auto max-w-6xl px-5 py-2">
+          <ul className="mx-auto max-w-[1360px] px-5 sm:px-8 py-2">
             {nav.map((n, i) => (
               <li key={n.to} className="border-b last:border-0">
                 <Link

@@ -5,7 +5,7 @@ import { Logo } from "./SiteHeader";
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[2fr_1fr_1fr] md:px-8">
+      <div className="mx-auto grid max-w-[1360px] gap-10 px-5 sm:px-8 lg:px-12 py-14 md:grid-cols-[2fr_1fr_1fr]">
         <div>
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -30,7 +30,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t">
-        <div className="mx-auto flex max-w-6xl justify-between px-5 py-5 font-mono text-xs text-muted-foreground md:px-8">
+        <div className="mx-auto flex max-w-[1360px] justify-between px-5 sm:px-8 lg:px-12 py-5 font-mono text-xs text-muted-foreground">
           <span>K-Means Lab · Phase 1</span>
           <span>argmin Σ ‖x − μ‖²</span>
         </div>

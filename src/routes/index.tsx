@@ -66,7 +66,7 @@ function Home() {
       <section className="py-20">
         <Container>
           <SectionHeading number="I." kicker="The journey" title="Four movements, one algorithm." />
-          <ol className="grid border-t md:grid-cols-4 md:ml-24">
+          <ol className="grid border-t md:grid-cols-4 md:ml-16 lg:ml-20">
             {journey.map(([t, d], i) => (
               <li key={t} className="border-b py-6 md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0">
                 <span className="font-mono text-xs text-accent">0{i + 1}</span>
@@ -81,7 +81,7 @@ function Home() {
       <section className="border-t bg-paper py-20">
         <Container>
           <SectionHeading number="II." kicker="Contents" title="Topics covered" />
-          <div className="md:ml-24">
+          <div className="md:ml-16 lg:ml-20">
             <ol>{modules.map((m) => <ModuleEntry key={m.n} {...m} compact />)}</ol>
             <div className="mt-12 grid gap-10 md:grid-cols-3">
               {topics.map((t) => (
@@ -101,10 +101,10 @@ function Home() {
         <Container className="grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-center">
           <div>
             <SectionHeading number="III." kicker="Laboratory" title="Experiment with the algorithm." />
-            <p className="max-w-md text-muted-foreground md:ml-24 leading-relaxed">
+            <p className="max-w-md text-muted-foreground md:ml-16 lg:ml-20 leading-relaxed">
               Step through iterations in real time. Choose from four synthetic dataset distributions, adjust K from 1 to 8, compare K-Means++ against random initialization, and monitor WCSS convergence step by step.
             </p>
-            <Link to="/explorer" className="mt-6 inline-flex items-center gap-2 border-b border-foreground pb-0.5 text-sm font-medium hover:border-accent hover:text-accent md:ml-24">
+            <Link to="/explorer" className="mt-6 inline-flex items-center gap-2 border-b border-foreground pb-0.5 text-sm font-medium hover:border-accent hover:text-accent md:ml-16 lg:ml-20">
               Open the Algorithm Explorer <ArrowRight size={14} />
             </Link>
           </div>

@@ -173,7 +173,7 @@ function Explorer() {
         }
       />
 
-      <Container className="grid gap-8 py-12 lg:grid-cols-[1fr_19rem]">
+      <Container className="grid gap-8 py-12 lg:grid-cols-[1fr_21rem]">
         {/* Main Canvas & Controls */}
         <VizFrame
           title={`Plot · ${ds} · K = ${k}`}
@@ -498,7 +498,7 @@ function Explorer() {
               kicker="Module 3"
               id="fundamentals"
             />
-            <div className="space-y-6 md:ml-24 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            <div className="space-y-6 md:ml-16 lg:ml-20 max-w-5xl text-base leading-relaxed text-muted-foreground">
               <p>
                 <strong>What is K-Means?</strong> Proposed in its standard form by Stuart Lloyd in 1957 (and published in 1982), K-Means is a partition-based clustering algorithm. Its name derives directly from its mechanism: the algorithm partitions a collection of vectors into <strong>K</strong> groups by repeatedly positioning each group's center at the mathematical <strong>Mean</strong> of its members.
               </p>
@@ -536,7 +536,7 @@ function Explorer() {
               kicker="Module 5"
               id="algorithm-steps"
             />
-            <div className="space-y-8 md:ml-24 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            <div className="space-y-8 md:ml-16 lg:ml-20 max-w-5xl text-base leading-relaxed text-muted-foreground">
               <p>
                 Lloyd's algorithm executes through seven deterministic stages:
               </p>

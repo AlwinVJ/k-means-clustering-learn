@@ -5,7 +5,7 @@ import type { NavTo } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("mx-auto max-w-6xl px-5 md:px-8", className)}>{children}</div>;
+  return <div className={cn("mx-auto max-w-[1360px] w-full px-5 sm:px-8 lg:px-12", className)}>{children}</div>;
 }
 
 export function Breadcrumbs({ items }: { items: { label: string; to?: NavTo }[] }) {

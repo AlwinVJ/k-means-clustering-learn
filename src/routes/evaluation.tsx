@@ -40,7 +40,7 @@ function EvaluationPage() {
         }
       />
 
-      <Container className="grid gap-12 py-16 lg:grid-cols-[14rem_1fr]">
+      <Container className="grid gap-12 py-16 lg:grid-cols-[15rem_1fr]">
         <nav aria-label="On this page" className="hidden lg:block">
           <div className="sticky top-24 space-y-6">
             <div>
@@ -68,7 +68,7 @@ function EvaluationPage() {
           </div>
         </nav>
 
-        <article className="max-w-3xl space-y-24">
+        <article className="min-w-0 flex-1 space-y-24 max-w-5xl">
           {/* Section 1: The Problem of Selecting K */}
           <section id="why-k" aria-labelledby="why-k-heading" className="scroll-mt-24">
             <SectionHeading
@@ -77,7 +77,7 @@ function EvaluationPage() {
               kicker="Model Selection"
               id="why-k-heading"
             />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 In supervised learning, cross-validation on a hold-out test set readily reveals overfitting: as model capacity grows beyond optimal, validation loss begins to climb. In unsupervised clustering, however, there are <strong>no ground-truth targets</strong> to test against.
               </p>
@@ -114,7 +114,7 @@ function EvaluationPage() {
               kicker="Variance Scree Plot"
               id="elbow-heading"
             />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 The <strong>Elbow Method</strong> plots total Within-Cluster Sum of Squares (WCSS / Inertia) as a function of the candidate cluster count <span className="font-mono text-foreground">K ∈ [1, K_max]</span>.
               </p>
@@ -200,7 +200,7 @@ function EvaluationPage() {
               kicker="Individual Quality Metric"
               id="sil-heading"
             />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 Introduced by Peter Rousseeuw (1987), <strong>Silhouette Analysis</strong> computes a score for each individual sample measuring how tightly bound it is to its own cluster versus how isolated it is from neighboring clusters.
               </p>
@@ -269,7 +269,7 @@ function EvaluationPage() {
               kicker="Unsupervised Benchmarks"
               id="internal-heading"
             />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 When ground-truth labels are absent, internal metrics assess the geometric validity of clusters.
               </p>
@@ -318,7 +318,7 @@ function EvaluationPage() {
               kicker="Supervised Benchmarking"
               id="external-heading"
             />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 In research experiments and benchmark evaluations, synthetic or labeled datasets (such as MNIST digits or Iris species) possess true ground-truth class labels <span className="font-mono text-foreground">Y</span>. Because clustering algorithms assign arbitrary cluster indices (cluster 0 could correspond to true class "setosa" or "virginica"), standard accuracy cannot be computed directly.
               </p>

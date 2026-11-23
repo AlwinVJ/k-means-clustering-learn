@@ -39,7 +39,7 @@ function MathematicsPage() {
         }
       />
 
-      <Container className="grid gap-12 py-16 lg:grid-cols-[14rem_1fr]">
+      <Container className="grid gap-12 py-16 lg:grid-cols-[15rem_1fr]">
         <nav aria-label="On this page" className="hidden lg:block">
           <div className="sticky top-24 space-y-6">
             <div>
@@ -67,11 +67,11 @@ function MathematicsPage() {
           </div>
         </nav>
 
-        <article className="max-w-3xl space-y-24">
+        <article className="min-w-0 flex-1 space-y-24 max-w-5xl">
           {/* Section 1: Euclidean Distance */}
           <section id="distance" aria-labelledby="dist-heading" className="scroll-mt-24">
             <SectionHeading number="03.1" title="Euclidean Distance Metric" kicker="Geometric Foundation" id="dist-heading" />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 In classical K-Means, the proximity between an arbitrary observation vector <span className="font-mono text-foreground">x = (x₁, x₂, ..., x_d)ᵀ</span> and a reference point or centroid <span className="font-mono text-foreground">μ = (μ₁, μ₂, ..., μ_d)ᵀ</span> is measured using the standard <span className="font-mono text-foreground">L₂</span> (Euclidean) norm.
               </p>
@@ -125,7 +125,7 @@ function MathematicsPage() {
           {/* Section 2: Centroid Calculation */}
           <section id="centroid" aria-labelledby="cent-heading" className="scroll-mt-24 border-t pt-16">
             <SectionHeading number="03.2" title="Centroid & Sample Mean" kicker="Centroid Optimality" id="cent-heading" />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 Given a cluster partition <span className="font-mono text-foreground">Cₖ</span> consisting of <span className="font-mono text-foreground">|Cₖ|</span> observations, the representative prototype <span className="font-mono text-foreground">μₖ</span> is defined as the multi-dimensional arithmetic center of mass:
               </p>
@@ -178,7 +178,7 @@ function MathematicsPage() {
           {/* Section 3: WCSS */}
           <section id="wcss" aria-labelledby="wcss-heading" className="scroll-mt-24 border-t pt-16">
             <SectionHeading number="03.3" title="Within-Cluster Sum of Squares" kicker="Inertia & Compactness" id="wcss-heading" />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 The <strong>Within-Cluster Sum of Squares (WCSS)</strong>, often termed <em>Inertia</em> in software packages such as scikit-learn, aggregates the dispersion of all points around their assigned centroids across all <span className="font-mono text-foreground">K</span> clusters:
               </p>
@@ -214,7 +214,7 @@ function MathematicsPage() {
           {/* Section 4: Objective Function */}
           <section id="objective" aria-labelledby="obj-heading" className="scroll-mt-24 border-t pt-16">
             <SectionHeading number="03.4" title="The Optimization Objective" kicker="Formal Loss Formulation" id="obj-heading" />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 Formally, K-Means is an optimization problem over two coupled sets of variables: the discrete cluster assignments and the continuous centroid coordinates.
               </p>
@@ -241,7 +241,7 @@ function MathematicsPage() {
           {/* Section 5: Coordinate Descent & Convergence */}
           <section id="convergence" aria-labelledby="conv-heading" className="scroll-mt-24 border-t pt-16">
             <SectionHeading number="03.5" title="Coordinate Descent & Convergence" kicker="Lloyd's Algorithm" id="conv-heading" />
-            <div className="space-y-6 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-6 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <p className="text-muted-foreground">
                 Optimizing <span className="font-mono text-foreground">J(R, M)</span> simultaneously over discrete assignments <span className="font-mono text-foreground">R</span> and continuous centers <span className="font-mono text-foreground">M</span> is an NP-hard combinatorial problem. <strong>Lloyd's Algorithm (1957/1982)</strong> solves this via <em>block coordinate descent</em> (Expectation-Maximization), alternating between two optimal sub-steps:
               </p>

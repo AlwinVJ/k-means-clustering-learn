@@ -41,7 +41,7 @@ function Learn() {
         }
       />
 
-      <Container className="grid gap-12 py-16 lg:grid-cols-[14rem_1fr]">
+      <Container className="grid gap-12 py-16 lg:grid-cols-[16rem_1fr]">
         <nav aria-label="Table of contents" className="hidden lg:block">
           <div className="sticky top-24 space-y-6">
             <div>
@@ -69,7 +69,7 @@ function Learn() {
           </div>
         </nav>
 
-        <article className="max-w-3xl space-y-24">
+        <article className="min-w-0 flex-1 space-y-24 max-w-5xl">
           {/* Section: Curriculum Map */}
           <section id="curriculum" aria-labelledby="curriculum-heading" className="scroll-mt-24">
             <SectionHeading
@@ -78,7 +78,7 @@ function Learn() {
               kicker="Structured Monograph"
               id="curriculum-heading"
             />
-            <div className="md:ml-24">
+            <div className="md:ml-16 lg:ml-20">
               <p className="text-base leading-relaxed text-muted-foreground mb-8">
                 Each module has been designed to balance pedagogical intuition with mathematical rigor and reproducible implementation code. You may follow the path sequentially or jump directly into the practical laboratory.
               </p>
@@ -98,7 +98,7 @@ function Learn() {
               kicker="Foundational Theory"
               id="mod1-heading"
             />
-            <div className="space-y-8 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <div className="space-y-4">
                 <h3 className="font-serif text-2xl text-foreground">What is Machine Learning?</h3>
                 <p className="text-muted-foreground">
@@ -203,7 +203,7 @@ function Learn() {
               kicker="Mechanisms & Typologies"
               id="mod2-heading"
             />
-            <div className="space-y-8 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <div className="space-y-4">
                 <h3 className="font-serif text-2xl text-foreground">Formal Definition of Clustering</h3>
                 <p className="text-muted-foreground">
@@ -291,7 +291,7 @@ function Learn() {
               kicker="Applied Engineering"
               id="mod9-heading"
             />
-            <div className="space-y-8 md:ml-24 text-base leading-relaxed">
+            <div className="space-y-8 md:ml-16 lg:ml-20 text-base leading-relaxed">
               <div className="space-y-4">
                 <h3 className="font-serif text-2xl text-foreground">Where K-Means Shines in Production</h3>
                 <p className="text-muted-foreground">
